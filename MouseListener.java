@@ -8,9 +8,9 @@ public class MouseListener implements java.awt.event.MouseListener {
 
     Controller main;
     JFrame frame;
-    JTextArea area;
+    JTextField area;
 
-    public MouseListener(Controller main, JFrame frame, JTextArea area) {
+    public MouseListener(Controller main, JFrame frame, JTextField area) {
         this.main = main;
         this.frame = frame;
         this.area = area;

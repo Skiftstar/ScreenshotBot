@@ -17,7 +17,8 @@ import java.util.List;
 
 public class Controller extends JPanel implements ActionListener {
 
-    JTextArea area1, area2, area3, field, delay;
+    JTextField area1, area2, area3;
+    JTextArea field, delay;
     File folder;
     int x1 = -1, x2 = -1, y1 = -1, y2 = -1, clickX = -1, clickY = -1;
 
@@ -31,15 +32,19 @@ public class Controller extends JPanel implements ActionListener {
         clickBt.addActionListener(new ButtonOneListener(this, "bt3"));
         JButton start = new JButton("start");
         start.addActionListener(this);
-        area1 = new JTextArea("X:\nY:");
+        area1 = new JTextField("X:\nY:");
+        area1.setEditable(false);
         area1.setVisible(true);
-        area3 = new JTextArea("X:\nY:");
+        area3 = new JTextField("X:\nY:");
+        area3.setEditable(false);
         area1.setVisible(true);
-        area2 = new JTextArea("X:\nY:");
+        area2 = new JTextField("X:\nY:");
+        area2.setEditable(false);
         area2.setVisible(true);
         JButton button2 = new JButton("XY Two");
         button2.addActionListener(new ButtonOneListener(this, "bt2"));
-        JTextArea FolderName = new JTextArea("Please select Folder");
+        JTextField FolderName = new JTextField("Please select Folder");
+        FolderName.setEditable(false);
         JButton folderBt = new JButton("Folder");
         field = new JTextArea("Number of Screenshots (just delete this text here)");
         folderBt.addActionListener(new ActionListener() {
@@ -59,6 +64,8 @@ public class Controller extends JPanel implements ActionListener {
         });
         //Create and set up the content pane.
         JComponent newContentPane = this;
+        BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
+        this.setLayout(boxLayout);
         newContentPane.setOpaque(true); //content panes must be opaque
         newContentPane.add(delay);
         newContentPane.add(button);
