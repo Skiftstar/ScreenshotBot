@@ -9,10 +9,12 @@ public class ButtonOneListener implements ActionListener {
 
     Controller main;
     String title;
+    JTextField field;
 
-    public ButtonOneListener(Controller main, String title) {
+    public ButtonOneListener(Controller main, String title, JTextField field) {
         this.main = main;
         this.title = title;
+        this.field = field;
     }
 
     @Override
@@ -26,6 +28,6 @@ public class ButtonOneListener implements ActionListener {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize);
         frame.setResizable(false);
-        frame.addMouseListener(new MouseListener(main, frame, main.area1));
+        frame.addMouseListener(new MouseListener(main, frame, field));
     }
 }

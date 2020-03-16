@@ -18,7 +18,7 @@ import java.util.List;
 public class Controller extends JPanel implements ActionListener {
 
     JTextField area1, area2, area3;
-    JTextArea field, delay;
+    JTextArea field, delay, keyPressCheck;
     File folder;
     int x1 = -1, x2 = -1, y1 = -1, y2 = -1, clickX = -1, clickY = -1;
 
@@ -26,12 +26,6 @@ public class Controller extends JPanel implements ActionListener {
         JFrame frame = new JFrame("Screenshot");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         delay = new JTextArea("Delay in MilliSeconds (Just delete this text)");
-        JButton button = new JButton("XY One");
-        button.addActionListener(new ButtonOneListener(this, "bt1"));
-        JButton clickBt = new JButton("XY Click");
-        clickBt.addActionListener(new ButtonOneListener(this, "bt3"));
-        JButton start = new JButton("start");
-        start.addActionListener(this);
         area1 = new JTextField("X:\nY:");
         area1.setEditable(false);
         area1.setVisible(true);
@@ -41,8 +35,14 @@ public class Controller extends JPanel implements ActionListener {
         area2 = new JTextField("X:\nY:");
         area2.setEditable(false);
         area2.setVisible(true);
+        JButton button = new JButton("XY One");
+        button.addActionListener(new ButtonOneListener(this, "bt1", area1));
+        JButton clickBt = new JButton("XY Click");
+        clickBt.addActionListener(new ButtonOneListener(this, "bt3", area3));
+        JButton start = new JButton("start");
+        start.addActionListener(this);
         JButton button2 = new JButton("XY Two");
-        button2.addActionListener(new ButtonOneListener(this, "bt2"));
+        button2.addActionListener(new ButtonOneListener(this, "bt2", area2));
         JTextField FolderName = new JTextField("Please select Folder");
         FolderName.setEditable(false);
         JButton folderBt = new JButton("Folder");
@@ -63,6 +63,8 @@ public class Controller extends JPanel implements ActionListener {
             }
         });
         //Create and set up the content pane.
+        keyPressCheck = new JTextArea("Do you want a arrow right key press? True or false.");
+        keyPressCheck.setVisible(true);
         JComponent newContentPane = this;
         BoxLayout boxLayout = new BoxLayout(this, BoxLayout.Y_AXIS);
         this.setLayout(boxLayout);
@@ -78,6 +80,7 @@ public class Controller extends JPanel implements ActionListener {
         newContentPane.add(FolderName);
         newContentPane.add(field);
         newContentPane.add(start);
+        newContentPane.add(keyPressCheck);
         frame.setContentPane(newContentPane);
         frame.setSize(200, 200);
         Dimension dim = new Dimension(200, 200);
@@ -133,6 +136,10 @@ public class Controller extends JPanel implements ActionListener {
 
                 System.out.println("A full screenshot saved!");
                 Click(clickX, clickY);
+                if (keyPressCheck.getText().equalsIgnoreCase("true")) {
+                    robot.keyPress(KeyEvent.VK_RIGHT);
+                    robot.keyRelease(KeyEvent.VK_RIGHT);
+                }
                 Thread.sleep(delay);
             } catch (AWTException | IOException | InterruptedException ex) {
                 System.err.println(ex);
