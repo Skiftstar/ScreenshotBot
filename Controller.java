@@ -26,9 +26,9 @@ public class Controller extends JPanel implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         delay = new JTextArea("Delay in MilliSeconds (Just delete this text)");
         JButton button = new JButton("XY One");
-        button.addActionListener(new ButtonOneListener(this));
+        button.addActionListener(new ButtonOneListener(this, "bt1"));
         JButton clickBt = new JButton("XY Click");
-        clickBt.addActionListener(new ButtonThreeListener(this));
+        clickBt.addActionListener(new ButtonOneListener(this, "bt3"));
         JButton start = new JButton("start");
         start.addActionListener(this);
         area1 = new JTextArea("X:\nY:");
@@ -38,7 +38,7 @@ public class Controller extends JPanel implements ActionListener {
         area2 = new JTextArea("X:\nY:");
         area2.setVisible(true);
         JButton button2 = new JButton("XY Two");
-        button2.addActionListener(new ButtonTwoListener(this));
+        button2.addActionListener(new ButtonOneListener(this, "bt2"));
         JTextArea FolderName = new JTextArea("Please select Folder");
         JButton folderBt = new JButton("Folder");
         field = new JTextArea("Number of Screenshots (just delete this text here)");

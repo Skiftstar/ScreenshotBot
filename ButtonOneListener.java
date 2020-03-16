@@ -8,14 +8,16 @@ import java.awt.event.ActionListener;
 public class ButtonOneListener implements ActionListener {
 
     Controller main;
+    String title;
 
-    public ButtonOneListener(Controller main) {
+    public ButtonOneListener(Controller main, String title) {
         this.main = main;
+        this.title = title;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFrame frame = new JFrame("bt1");
+        JFrame frame = new JFrame(title);
         frame.setOpacity(0.2f);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
